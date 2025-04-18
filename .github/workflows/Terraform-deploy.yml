@@ -1,9 +1,7 @@
 name: Terraform Deploy
 
 on:
-  push:
-    paths:
-      - '**.tf'
+  workflow_dispatch:
 
 jobs:
   terraform:
@@ -18,7 +16,7 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-1  # or your region
+        aws-region: eu-north-1 # or your region
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
