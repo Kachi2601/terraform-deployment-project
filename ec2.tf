@@ -4,7 +4,7 @@ provider "aws" {
 
 resource "aws_instance" "example" {
     ami           = "ami-08f78cb3cc8a4578e" # Amazon Linux 2 AMI
-    instance_type = "t2.micro"
+    instance_type = "t3.micro"
 
     user_data = <<-EOF
                             #!/bin/bash
