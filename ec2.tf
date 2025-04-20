@@ -5,7 +5,7 @@ provider "aws" {
 resource "aws_instance" "example" {
     ami           = "ami-08f78cb3cc8a4578e" # Amazon Linux 2 AMI
     instance_type = "t3.micro"
-    security_groups = [data.aws_security_group.existing_web_sg.name]
+    vpc_security_group_ids = [data.aws_security_group.existing_web_sg.id]
 
     
     user_data = <<-EOF
