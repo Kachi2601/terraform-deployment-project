@@ -2,6 +2,14 @@ resource "aws_security_group" "web_sg" {
     name        = "web-sg"
     description = "Allow inbound and outbound traffic on port 80"
     vpc_id      = "your-vpc-id" # Replace with your VPC ID
+  
+    ingress {
+        description = "Allow SSH"
+        from_port   = 22
+        to_port     = 22
+        protocol    = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
 
     ingress {
         description = "Allow inbound HTTP traffic"
