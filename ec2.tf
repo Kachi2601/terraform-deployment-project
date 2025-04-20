@@ -5,7 +5,8 @@ provider "aws" {
 resource "aws_instance" "example" {
     ami           = "ami-08f78cb3cc8a4578e" # Amazon Linux 2 AMI
     instance_type = "t3.micro"
-
+    vpc_security_group_ids = [aws_security_group.web_sg.id]  # <-- Connects SG to EC2 instanc
+    
     user_data = <<-EOF
                             #!/bin/bash
                             yum update -y
