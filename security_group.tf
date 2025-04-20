@@ -28,7 +28,7 @@ resource "aws_security_group" "web_sg" {
     }
 }
 
-resource "aws_instance" "example" {
+resource "aws_instance" "web_instance" {
     ami = "ami-08f78cb3cc8a4578e" # Amazon Linux 2 AMI
     instance_type = "t3.micro"
     security_groups = [aws_security_group.web_sg.name]
