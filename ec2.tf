@@ -9,13 +9,14 @@ resource "aws_instance" "example" {
 
     
     user_data = <<-EOF
-                            #!/bin/bash
-                            yum update -y
-                            amazon-linux-extras install docker -y
-                            service docker start
-                            usermod -a -G docker ec2-user
-                            docker run -d --name my-awesome-app -p 80:80 xavier2601/web-portfolio:v1
-                            EOF
+                    #!/bin/bash
+                    dnf update -y
+                    dnf install docker -y
+                    systemctl enable docker
+                    systemctl start docker
+                    usermod -aG docker ec2-user
+                    docker run -d -p 80:80 xavier2601/web-portfolio:v1
+                EOF
 
     tags = {
         Name = "terraform-ec2-docker"
