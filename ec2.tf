@@ -7,13 +7,13 @@ resource "aws_instance" "example" {
     instance_type = "t2.micro"
 
     user_data = <<-EOF
-                            #!/bin/bash
-                            yum update -y
-                            amazon-linux-extras install docker -y
-                            service docker start
-                            usermod -a -G docker ec2-user
-                            docker run -d --name my-awesome-portfolio -p 80:80 xavier2601/web-portfolio:v1
-                            EOF
+                #!/bin/bash
+                yum update -y
+                amazon-linux-extras install docker -y
+                service docker start
+                usermod -a -G docker ec2-user
+                docker run -d --name my-awesome-portfolio -p 80:80 xavier2601/web-portfolio:v1
+                EOF
 
     tags = {
         Name = "terraform-ec2-docker"
