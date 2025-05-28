@@ -3,16 +3,20 @@ provider "aws" {
 }
 
 resource "aws_instance" "example" {
-    ami           = "ami-0c02fb55956c7d316" # Amazon Linux 2 AMI
-    instance_type = "t2.micro"
+    ami           = "ami-08f78cb3cc8a4578e" # Amazon Linux 2 AMI
+    instance_type = "t3.micro"
+    vpc_security_group_ids = [data.aws_security_group.existing_web_sg.id]
 
+    
     user_data = <<-EOF
+    
                 #!/bin/bash
                 yum update -y
                 amazon-linux-extras install docker -y
                 service docker start
                 usermod -a -G docker ec2-user
                 docker run -d --name my-awesome-portfolio -p 80:80 xavier2601/web-portfolio:v1
+
                 EOF
 
     tags = {
