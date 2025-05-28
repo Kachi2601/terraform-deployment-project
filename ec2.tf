@@ -9,12 +9,14 @@ resource "aws_instance" "example" {
 
     
     user_data = <<-EOF
+    
                 #!/bin/bash
-                sudo dnf install docker -y
-                sudo systemctl enable docker
-                sudo systemctl start docker
-                sudo usermod -aG docker ec2-user
-                sudo docker run -d -p 80:80 xavier2601/web-portfolio:v1
+                yum update -y
+                amazon-linux-extras install docker -y
+                service docker start
+                usermod -a -G docker ec2-user
+                docker run -d --name my-awesome-portfolio -p 80:80 xavier2601/web-portfolio:v1
+
                 EOF
 
     tags = {
